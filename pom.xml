@@ -48,6 +48,8 @@
   <properties>
   	<maven.pax.plugin.version>1.5</maven.pax.plugin.version>
   	<maven.bundle.plugin.version>2.3.7</maven.bundle.plugin.version>
+        <maven.scm.plugin.version>1.6</maven.scm.plugin.version>
+        <maven.release.plugin.version>2.2.2</maven.release.plugin.version>
 	<org.osgi.core.version>4.2.0</org.osgi.core.version>
 	<org.osgi.compendium.version>4.2.0</org.osgi.compendium.version>
 	<io.netty.version>3.4.2.Final</io.netty.version>
@@ -99,6 +101,24 @@
       
     </plugins>
     </pluginManagement>
+    <plugins>
+	<plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-plugin</artifactId>
+          <version>${maven.scm.plugin.version}</version>
+          <configuration>
+            <connectionType>connection</connectionType>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>${maven.release.plugin.version}</version>
+       <!--   <configuration>
+            <tagBase>https://svn.apache.org/repos/asf/maven/components/releases</tagBase>
+          </configuration> -->
+        </plugin>
+    </plugins>
   </build>
   
   <dependencyManagement>
