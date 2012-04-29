@@ -53,7 +53,7 @@
 	<io.netty.version>3.4.2.Final</io.netty.version>
 	<org.slf4j.api.version>1.6.4</org.slf4j.api.version>
 	<org.slf4j.simple.version>1.6.4</org.slf4j.simple.version>
-	<org.junit.version>4.8.1</org.junit.version>
+	<junit.version>4.10</junit.version>
   </properties>
   
 
