@@ -1,11 +1,11 @@
-package org.mpt.j2f.websocket.sample.app;
+package org.mpt.j2f.ws.server.sample.app;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import org.mpt.j2f.websocket.handler.impl.AWebSocketHandler;
+import org.mpt.j2f.ws.server.handler.impl.AWebSocketHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.webbitserver.WebSocketConnection;

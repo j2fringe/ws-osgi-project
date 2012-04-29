@@ -1,4 +1,4 @@
-package org.mpt.j2f.websocket.service;
+package org.mpt.j2f.ws.server.service;
 
 import org.webbitserver.WebSocketHandler;
 

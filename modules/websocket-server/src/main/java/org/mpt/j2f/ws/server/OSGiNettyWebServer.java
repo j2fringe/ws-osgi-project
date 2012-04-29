@@ -1,4 +1,4 @@
-package org.mpt.j2f.websocket.server;
+package org.mpt.j2f.ws.server;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;

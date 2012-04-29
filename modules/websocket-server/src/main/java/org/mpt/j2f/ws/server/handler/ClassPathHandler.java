@@ -1,7 +1,7 @@
 /**
  * @author jmartinez
  */
-package org.mpt.j2f.websocket.handler;
+package org.mpt.j2f.ws.server.handler;
 
 import static java.util.concurrent.Executors.newFixedThreadPool;
 
@@ -20,14 +20,14 @@ import org.webbitserver.HttpRequest;
 import org.webbitserver.HttpResponse;
 import org.webbitserver.handler.AbstractResourceHandler;
 
-import org.mpt.j2f.websocket.service.IWebSocketApp;
-import org.mpt.j2f.websocket.service.impl.WebSocketService;
+import org.mpt.j2f.ws.server.service.IWebSocketApp;
+import org.mpt.j2f.ws.server.service.impl.WebSocketService;
 
 
 public class ClassPathHandler extends AbstractResourceHandler {
 
 	private static final String DEFAULT_WS_JS_PATH = "/_mpt_/mpt-ws.js";
-	private static final String DEFAULT_WS_JS_PACK = "/org/mpt/j2f/websocket/res/js/mpt-ws.js";
+	private static final String DEFAULT_WS_JS_PACK = "/org/mpt/j2f/ws/server/res/js/mpt-ws.js";
 	
 	
 	private IWebSocketApp wsApp_ = null;

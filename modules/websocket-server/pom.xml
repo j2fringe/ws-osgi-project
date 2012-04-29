@@ -9,7 +9,7 @@
 
   <properties>
     <bundle.symbolicName>org.mpt.j2f.websocket-server</bundle.symbolicName>
-    <bundle.namespace>org.mpt.j2f.websocket.server</bundle.namespace>
+    <bundle.namespace>org.mpt.j2f.ws.server</bundle.namespace>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>

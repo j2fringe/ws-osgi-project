@@ -1,9 +1,9 @@
-package org.mpt.j2f.websocket.sample.app;
+package org.mpt.j2f.ws.server.sample.app;
 
 import java.util.Map;
 
-import org.mpt.j2f.websocket.service.IWebSocketApp;
-import org.mpt.j2f.websocket.service.IWebSocketService;
+import org.mpt.j2f.ws.server.service.IWebSocketApp;
+import org.mpt.j2f.ws.server.service.IWebSocketService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.webbitserver.WebSocketHandler;
@@ -12,10 +12,10 @@ public class WSSampleApp implements IWebSocketApp {
 
 	private Logger logger = LoggerFactory.getLogger(WSSampleApp.class);
 	
-	private static final String WS_SAMPLE_APP_ID = "org.mpt.j2f.websocket.sample";
+	private static final String WS_SAMPLE_APP_ID = "org.mpt.j2f.ws.sample";
 	private static final String WS_SAMPLE_WEBSOCKET_URL= "/ws-sample";
 	private static final String WS_SAMPLE_HTTP_URL= "/sample";
-	private static final String WS_SAMPLE_RESOURCE_PACKAGE = "/org/mpt/j2f/websocket/res/sample";
+	private static final String WS_SAMPLE_RESOURCE_PACKAGE = "/org/mpt/j2f/ws/server/res/sample";
 	
 	private WSSampleHandler handler = new WSSampleHandler();
 	

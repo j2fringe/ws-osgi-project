@@ -1,4 +1,4 @@
-package org.mpt.j2f.websocket.handler.impl;
+package org.mpt.j2f.ws.server.handler.impl;
 
 import java.util.ArrayList;
 import java.util.Iterator;

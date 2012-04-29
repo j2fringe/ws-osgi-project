@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="startup" deactivate="shutdown" immediate="true" modified="update" name="org.j2f.osgi.websocket.server">
-   <implementation class="org.mpt.j2f.websocket.service.impl.WebSocketService"/>
+   <implementation class="org.mpt.j2f.ws.server.service.impl.WebSocketService"/>
    <service>
-      <provide interface="org.mpt.j2f.websocket.service.IWebSocketService"/>
+      <provide interface="org.mpt.j2f.ws.server.service.IWebSocketService"/>
    </service>
    <property name="org.mpt.j2f.websocket.port" type="String" value="9002"/>
 </scr:component>

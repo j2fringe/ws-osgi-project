@@ -1,13 +1,13 @@
-package org.mpt.j2f.websocket.service.impl;
+package org.mpt.j2f.ws.server.service.impl;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.mpt.j2f.websocket.handler.ClassPathHandler;
-import org.mpt.j2f.websocket.server.OSGiNettyWebServer;
-import org.mpt.j2f.websocket.service.IWebSocketApp;
-import org.mpt.j2f.websocket.service.IWebSocketService;
+import org.mpt.j2f.ws.server.OSGiNettyWebServer;
+import org.mpt.j2f.ws.server.handler.ClassPathHandler;
+import org.mpt.j2f.ws.server.service.IWebSocketApp;
+import org.mpt.j2f.ws.server.service.IWebSocketService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
