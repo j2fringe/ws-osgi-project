@@ -1,11 +1,11 @@
+
+
+/META-INF/
+/OSGI-INF/
+
 target/
 
-# eclipse
 .project
 .classpath
 .settings/
-
-# temp files
-*~
-
 

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <organization>
+    <name>J2Fringe</name>
+    <url>http://www.j2fringe.com</url>
+  </organization>
+
+  <!--
+   | put license details here
+  <licenses>
+    <license>
+      <name>...</name>
+      <url>http://...</url>
+      <comments>
+      </comments>
+    </license>
+  </licenses>
+  -->
+  
+  <developers>
+  	<developer>
+  		<name>J2 Fringe</name>
+  		<id>j2fringe</id>
+  		<email>j2fringe@dynasty.es</email>
+  		<roles>
+  			<role>Architect, Developer</role>
+  		</roles>
+  		<timezone>+1</timezone>
+  	</developer>
+ </developers>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mpt.j2f</groupId>
+  <artifactId>ws-osgi-project</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>WS-OSGI Project</name>
+
+  <!--
+   | describe your project here
+  -->
+
+  <description>Websockets in OSGi</description>
+
+  <packaging>pom</packaging>
+
+  <properties>
+  	<maven.pax.plugin.version>1.5</maven.pax.plugin.version>
+  	<maven.bundle.plugin.version>2.3.7</maven.bundle.plugin.version>
+	<org.osgi.core.version>4.2.0</org.osgi.core.version>
+	<org.osgi.compendium.version>4.2.0</org.osgi.compendium.version>
+	<io.netty.version>3.4.2.Final</io.netty.version>
+	<org.slf4j.api.version>1.6.4</org.slf4j.api.version>
+	<org.slf4j.simple.version>1.6.4</org.slf4j.simple.version>
+	<org.junit.version>4.8.1</org.junit.version>
+  </properties>
+  
+
+  <modules>
+    <module>modules</module>
+    
+  </modules>
+  
+  
+  <build>
+    <resources>
+      <resource>
+          <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>${maven.bundle.plugin.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.ops4j</groupId>
+        <artifactId>maven-pax-plugin</artifactId>
+        <version>${maven.pax.plugin.version}</version>
+        
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+        <executions>
+          <execution>
+            <id>ide-support</id>
+            <goals>
+              <goal>eclipse</goal>
+            </goals>
+          </execution>
+        </executions>
+        <extensions>true</extensions>
+      </plugin>
+      
+      
+    </plugins>
+    </pluginManagement>
+  </build>
+  
+  <dependencyManagement>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.osgi</groupId>
+  		<artifactId>org.osgi.core</artifactId>
+  		<version>${org.osgi.core.version}</version>
+  		<optional>true</optional>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.osgi</groupId>
+  		<artifactId>org.osgi.compendium</artifactId>
+  		<version>${org.osgi.compendium.version}</version>
+  		<optional>true</optional>
+  	</dependency>
+	<dependency>
+		<groupId>io.netty</groupId>
+		<artifactId>netty</artifactId>
+		<version>${io.netty.version}</version>
+		<scope>compile</scope>
+	</dependency>
+        <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${org.slf4j.api.version}</version>
+                <scope>provided</scope>
+        </dependency>
+        <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+		<version>${org.slf4j.simple.version}</version>
+		<scope>test</scope>
+        </dependency>
+        <dependency>
+		<groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+	</dependency>
+  </dependencies>
+  </dependencyManagement>
+  	
+
+
+
+  <repositories>
+    <repository>
+      <id>repository.jboss.org</id>
+      <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+</project>
+

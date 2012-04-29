@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <groupId>org.mpt.j2f</groupId>
+    <artifactId>ws-osgi-modules</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <properties>
+    <bundle.symbolicName>org.mpt.j2f.websocket-server</bundle.symbolicName>
+    <bundle.namespace>org.mpt.j2f.websocket.server</bundle.namespace>
+  </properties>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mpt.j2f</groupId>
+  <artifactId>websocket-server</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>${bundle.symbolicName}</name>
+
+  <packaging>bundle</packaging>
+
+  <dependencies>
+    
+    <dependency>
+      <groupId>org.webbitserver</groupId>
+      <artifactId>webbit</artifactId>
+      <version>0.4.7-SNAPSHOT</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.netty</groupId>
+      <artifactId>netty</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>

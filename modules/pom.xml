@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <groupId>org.mpt.j2f</groupId>
+    <artifactId>ws-osgi-project</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mpt.j2f</groupId>
+  <artifactId>ws-osgi-modules</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>WS-OSGI Modules</name>
+
+  <!--
+   | describe your project here
+  -->
+
+  <description>Core bundles for Websocket in OSGi</description>
+
+  <packaging>pom</packaging>
+
+  <properties>
+  	<maven.pax.plugin.version>1.5</maven.pax.plugin.version>
+  	<maven.bundle.plugin.version>2.3.7</maven.bundle.plugin.version>
+  </properties>
+  
+
+  <modules>
+    <module>webbit</module>
+    <module>websocket-server</module>
+  </modules>
+  
+  
+  <build>
+    <resources>
+      <resource>
+          <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.ops4j</groupId>
+        <artifactId>maven-pax-plugin</artifactId>
+        
+      </plugin>
+      <plugin>
+        <!--
+         | the following instructions build a simple set of public/private classes into an OSGi bundle
+        -->
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+            <Bundle-Version>${pom.version}</Bundle-Version>
+            <!--
+             | assume public classes are in the top package, and private classes are under ".internal"
+            -->
+            <Export-Package>!${bundle.namespace}.internal.*,${bundle.namespace}.*;version="${pom.version}"</Export-Package>
+            <Private-Package>${bundle.namespace}.internal.*</Private-Package>
+            <!--
+             | each module can override these defaults in their osgi.bnd file
+            -->
+            <_include>-osgi.bnd</_include>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-api</artifactId>
+  	</dependency> 
+	<dependency>
+	        <groupId>org.slf4j</groupId>
+        	<artifactId>slf4j-simple</artifactId>
+        </dependency>
+	<dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+        </dependency>
+  </dependencies>
+  
+</project>
+

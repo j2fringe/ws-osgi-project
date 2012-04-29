@@ -1,0 +1,144 @@
+/* Makeshift CSS Reset */
+{
+	margin: 0;
+	padding: 0;
+}
+
+
+#wrapper { 
+	width:800px; 
+	margin:0px auto;
+}
+
+
+/* Tell the browser to render HTML 5 elements as block */
+header, footer, aside, nav, article {
+	display: block;
+}
+
+nav{
+	display: block;
+	margin: 0px auto;
+	text-align: center;
+	width: 800px;
+}
+
+body {
+	margin: 0 auto;
+	font: 15px/22px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	background: White;
+}
+
+a { 
+	text-decoration: none;
+	color: RoyalBlue;
+}
+
+a:hover { 
+	color: MidnightBlue;
+}
+
+a img {
+	border: none;	
+}
+
+h1 {
+	font-size: 200%;
+	text-align:center;
+	color: MidnightBlue;
+	line-height:90%;
+	text-shadow: 0 3px 3px LightGray;
+}
+
+h2 {
+	font-size: 160%;
+	color: MidnightBlue;
+	text-shadow: 0 3px 3px LightGray;
+}
+
+.text {
+	padding: 15px 50px 5px;
+}
+
+.frame {
+	padding: 10px;
+	background: MintCream;
+	margin-bottom: 10px;
+	border: 1px solid LightGray;	
+	border-radius: 7px;
+}
+
+.frame button {
+	float: right;
+	position: relative;
+	top: -50px;
+	font-size: 150%;
+	right: 0px;
+}
+
+.label {
+	width: 200px;
+	vertical-align: top;
+	text-align:right;
+	font-size: 125%;
+	display: block;
+	position: relative;
+	float: left;
+	top: 5px;
+}
+
+.value {
+	font-size: 125%;
+	position: relative;
+	float: none;
+	left: 5px;
+	top: 5px;
+}
+
+.value img {
+	position: relative;
+	top: -5px;
+	width: 570px;
+	box-shadow: 3px 3px LightGray;
+	-moz-box-shadow: 3px 3px LightGray;
+	-webkit-box-shadow: 3px 3px LightGray;
+}
+
+.status {
+	padding: 10px 50px 5px;
+	background: White;
+	text-align:center;
+	color: Gray;
+	font-style: italic;
+	border: none;	
+}
+
+footer {
+	font-size: 80%;
+	padding: 2px 50px;
+	text-align:center;
+	background: White;
+	margin-top: 10px;
+	color: DarkGray;
+	border-top: 2px solid LightGray;
+}
+
+footer p {
+	padding: 0px;
+	margin: 0px;
+}
+
+
+
+
+/* header {
+	background-image: url('../images/DTG_banner.png');
+	height: 100px;
+} 
+
+header h1 {
+	width: 400px; 
+	top:10px;
+	left:210px;
+	position: relative;
+} */

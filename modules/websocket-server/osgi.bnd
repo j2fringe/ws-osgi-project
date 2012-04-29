@@ -1,0 +1,8 @@
+#-----------------------------------------------------------------
+# Use this file to add customized Bnd instructions for the bundle
+#-----------------------------------------------------------------
+
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Private-Package: org.mpt.j2f.websocket.*
+Service-Component: OSGI-INF/WebSocketService.xml, OSGI-INF/WSOSGISample.xml
+

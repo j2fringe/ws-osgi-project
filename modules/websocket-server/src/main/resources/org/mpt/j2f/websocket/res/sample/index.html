@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+
+	<meta name="viewport" content="width=800">
+	<title>Test MPT-WS JS</title>
+
+
+
+	<script type="text/javascript" src="_mpt_/mpt-ws.js"></script>
+	
+	<script type="text/javascript">
+		mptWS.global.toggle = function (flag) {
+			if ( flag ) {
+    			alert('WebSocket is opened at test.html! ('+mptWS.global.url+')');
+  			} else {
+    			alert('WebSocket is closed at test.html! ('+mptWS.global.url+')');
+  			}
+		}
+		
+		mptWS.global.async = function ( response ) {
+		    var data = response;
+		    var arr = data.split("|");
+		    var msg  = arr[0];
+		   
+		    if ( msg == 'result' ) {
+		    	var data = $(msg);
+		    	data.innerHTML = arr[1];
+		    } else if ( msg == 'time' ) {
+		    	var data = $(msg);
+		    	data.innerHTML = arr[1];
+		    } else if ( msg == 'updateTime') {
+		    	var data = $(msg);
+		    	data.innerHTML = arr[1];
+		    }
+		}
+		
+		function sendData(elem) {
+			var testName = $(elem);
+			var cmd = testName.name;
+			var value = testName.value;
+			
+			//alert("ws " + ws.value);
+			//alert("ws.name " + ws.name);
+			//alert("app " + app.value);
+			//alert("app.name " + app.name);
+			//alert("repoPath " + repoPath.value);
+			//alert("repoPath.name " + repoPath.name);
+			
+			mptWS.global.send(cmd+'|'+value);
+		
+		}
+	</script>
+	
+	<link rel="stylesheet" href="css/default.css">
+	
+	
+	
+	
+</head>
+<body onload="mptWS.global.openWebSocket()" onunload="mptWS.global.closeWebSocket()">
+<div id="wrapper">
+	<header>
+	  <h1>Test WS-OSGI Page</h1>
+	</header>
+
+	<!-- HOME -->
+	<section id="config">
+		<article class="text">
+			<div id="intro_text">WebSocket javascript functions are called through this javascript library <i>/_mpt_/mpt-ws.js</i>.	</div>
+			<div>The following javascripts funcions are allowed:
+			<ul>
+			<li><i><b>mptWS.global.openWebSocket():</b></i> Opens the websocket connection to server</li>
+			<li><i><b>mptWS.global.closeWebSocket():</b></i> Closes the websocket connection</li>
+			<li><i><b>mptWS.global.toggle = function (flag) {}:<i><b> When flag is true the websocket connection has been successfully open, otherwise the connection is closed</li>
+			<li><i><b>mptWS.global.send = function (message) {}:<i><b> Sends <i>message</i> to server</li>
+			<li><i><b>mptWS.global.async = function (response) {}:<i><b> Recieves a <i>response</i> from server</li>
+			<li><i><b>mptWS.global.url:<i><b> Variable which holds the current server url</li>
+			</ul>
+			</div>
+		</article >
+	</section>
+	
+	<section id="Sample">
+		<article class="frame">
+			<h2>mptWS.global.send()</h2>
+			<div class="label">Your Name:</div>
+			<div class="value">
+				<input id="testName" type="text" name="testButton" />
+			</div>
+			<button id="btnSend" type="button" onclick="sendData('testName')">Send</button>
+		</article>
+		<article class="frame">
+			<div class="label">Result:</div>	
+			<div id="result" class="value">Your name here</div>
+		</article>
+		<article class="frame">
+			<h2>mptWS.global.async()</h2>
+			<div class="label">Updated every</div>
+			<div class="value">
+					<input id="testTimer" type="text" name="testTimer"> seconds</input>
+			</div>
+			<button id="btnSend2" type="button" onclick="sendData('testTimer')">Update Timer</button>
+		</article>
+		<article class="frame">
+			<div class="label">Timer Updated:</div>	
+			<div id="time" class="value"/>
+		</article>
+		<article class="frame"> 
+			<div class="label">Current update time: </div>
+			<div id="updateTime" class="value">5</div> 
+		</article>
+	</section>
+
+	<footer>
+		<div id="footer_text">&copy; 2012 by <a href="#">J2Fringe</a> - Websocket & OSGI Applications. All rights reserved.</div>
+	</footer>
+</div>
+</body>
+
+</html>

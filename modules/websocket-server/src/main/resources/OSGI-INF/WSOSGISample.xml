@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" activate="startup" deactivate="shutdown" immediate="true" name="org.mpt.j2f.websocket.sample">
+   <implementation class="org.mpt.j2f.websocket.sample.app.WSSampleApp"/>
+   <reference bind="registerWebSocketService" cardinality="1..1" interface="org.mpt.j2f.websocket.service.IWebSocketService" name="IWebSocketService" policy="dynamic" unbind="unregisterWebSocketService"/>
+   <service>
+      <provide interface="org.mpt.j2f.websocket.service.IWebSocketApp"/>
+   </service>
+</scr:component>
