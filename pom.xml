@@ -189,7 +189,7 @@
   </distributionManagement>
   
   <scm>
-    <connection>scm:svn:git@github.com:j2fringe/ws-osgi-project.git</connection>
+    <connection>scm:git:git@github.com:j2fringe/ws-osgi-project.git</connection>
     <developerConnection>scm:git:git@github.com:j2fringe/ws-osgi-project.git</developerConnection>
     <url>https://github.com/j2fringe/ws-osgi-project</url>
   </scm>
