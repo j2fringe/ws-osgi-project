@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+   <parent>
+     <relativePath>../../pom.xml</relativePath>
+     <groupId>org.mpt.j2f</groupId>
+     <artifactId>ws-osgi-project</artifactId>
+     <version>0.0.1-SNAPSHOT</version>
+   </parent>
+
+ <developers>
+  	<developer>
+  		<name>J2 Fringe</name>
+  		<id>j2fringe</id>
+  		<email>j2fringe@gmail.com</email>
+  		<roles>
+  			<role>developer</role>
+  		</roles>
+  		<timezone>+1</timezone>
+  	</developer>
+ </developers>
+ 
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mpt.j2f</groupId>
+  <artifactId>ws-osgi-server-provision</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+  <name>WS-OSGI Provision (OSGi project)</name>
+
+  <!--
+   | describe your project here
+  -->
+
+  <description>Provisioning script for Websockets in OSGi</description>
+
+  <properties>
+    <!--
+     | some example OSGi runtime properties
+    -->
+<!--
+    <org.osgi.framework.bootdelegation>sun.util.calendar,sun.audio</org.osgi.framework.bootdelegation>
+    <org.osgi.framework.system.packages.extra>sun.audio;sun.util</org.osgi.framework.system.packages.extra> 
+    <org.osgi.service.http.port>8080</org.osgi.service.http.port>
+    <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure> -->
+  </properties>
+
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>provision</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.ops4j</groupId>
+        <artifactId>maven-pax-plugin</artifactId>
+	<configuration>
+          <provision>
+            <param>--platform=equinox</param>
+            <param>--profiles=log</param>
+            <param>--log=debug</param>
+	    <param>scan-bundle:mvn:org.eclipse.equinox/org.eclipse.equinox.ds/3.7.2</param>
+	    <param>scan-bundle:mvn:org.eclipse.equinox/org.eclipse.equinox.event/3.7.2</param>
+	    <param>scan-bundle:mvn:org.eclipse.equinox/org.eclipse.equinox.common/3.7.2</param>
+  	    <param>scan-bundle:mvn:org.eclipse.equinox/org.eclipse.equinox.util/3.7.2</param>
+	    <param>scan-bundle:mvn:org.eclipse/org.eclipse.osgi.services/3.7.2</param>
+	    <param>scan-bundle:mvn:org.eclipse/org.eclipse.osgi.util/3.7.2</param>
+          </provision>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+        <executions>
+        </executions>
+      </plugin>
+	 <plugin>
+        	<groupId>org.apache.maven.plugins</groupId>
+        	<artifactId>maven-dependency-plugin</artifactId>
+        	<version>2.4</version>
+        	<executions>
+        		<execution>
+        		<id>copy-dependencies</id>
+        		<phase>package</phase>
+        		<goals>
+        			<goal>copy-dependencies</goal>
+        		</goals>
+        		<configuration>
+        		  <outputDirectory>${basedir}/build/ws-osgi-project</outputDirectory>
+        		  <overWriteReleases>false</overWriteReleases>
+        		  <overWriteSnapshots>false</overWriteSnapshots>
+        		  <overWriteIfNewer>true</overWriteIfNewer>
+        		</configuration>
+        		</execution>
+        	</executions>
+        </plugin>
+
+    </plugins>
+  </build>
+
+</project>
