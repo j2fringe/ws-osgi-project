@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+
+	<meta name="viewport" content="width=800">
+	<title>Test MPT-WS JS</title>
+
+	
+	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script src="jquery.json-2.3.js" type="text/javascript"></script>
+	<script src="jquery.gracefulWebSocket.js" type="text/javascript"></script>
+	<script type="text/javascript" src="_mpt_/jf-ws.js"></script>
+	
+	<script type="text/javascript">
+		(function ($) {
+			var p = new jf.Param("data", "str");
+			var result = "";
+			result = p.getJFParam()
+			alert("Result String: " + result);
+			
+			p = new jf.Param(101, "int");
+			result = "";
+			result = p.getJFParam()
+			alert("Result Integer: " + result);
+			
+			p = new jf.Param(true, "bool");
+			result = "";
+			result = p.getJFParam()
+			alert("Result Boolean: " + result);
+			
+			p = new jf.Param(null, "null");
+			result = "";
+			result = p.getJFParam()
+			alert("Result NULL: " + result);
+			
+			var p2 = new jf.Param("data", "string"); 
+			p = new jf.Param(p2, "object");
+			result = "";
+			result = p.getJFParam()
+			alert("Result Object: " + result);
+			
+			
+		
+		
+			var ws = new jf.WS();
+			
+			ws.setOnOpen(ws_open);
+			ws.setOnClose(ws_close);
+			ws.setOnError(ws_error);
+			ws.setOnMessage(ws_onmessage);
+			
+			
+			
+			function ws_open(event) {
+				alert('WebSocket is opened at test.html! ('+ws.ws_url+')');
+			}
+			
+			
+			function ws_close(event) {
+				alert('WebSocket is closed at test.html! ('+ws.ws_url+')');
+			} 
+			
+			function ws_error(event) {
+				alert('Websocket error!!');
+			}
+			
+			function ws_onmessage(response) {
+				//alert("RESP: " + response);
+				var data = response;
+			    var arr = data.split("|");
+			    var msg  = '#'+arr[0];
+		   		if ( msg == '#result' ) {
+			    	$(msg).html(arr[1]);
+			    } else if ( msg == '#time' ) {
+			    	$(msg).html(arr[1]);
+			    } else if ( msg == '#updateTime') {
+			    	$(msg).html(arr[1]);
+			    }
+			}
+			
+			$("button").live("click", function () {
+				alert("Onclick: " + $(this).attr("id"));
+				var cmd = $(this).attr("id");
+				if ( cmd == "btnTest" ) {
+					var value = $("#testName").val();
+					ws.send('testButton|'+value);
+				} else if ( cmd == "btnTimer" ) {
+				alert("Value: " + $("#testTimer").val());
+					var value1 = $("#testTimer").val();
+					ws.send('testTimer|'+value1);
+				}
+			});
+			
+			
+			$("#login").live("submit" , function(e, data) {
+				alert( $('#email').val() );
+    			//window.open('demo.html', "_self");
+    			ws.send("HEllo WS!!");
+    			$.mobile.changePage("#home");
+   
+			   	return false;
+			});	
+			
+			
+		})(jQuery);
+	
+		
+	</script>
+	
+	<link rel="stylesheet" href="css/default.css">
+	
+	
+	
+	
+</head>
+<body >
+<div id="wrapper">
+	<header>
+	  <h1>Test WS-OSGI Page</h1>
+	</header>
+
+	<!-- HOME -->
+	<section id="config">
+		<article class="text">
+			<div id="intro_text">WebSocket javascript functions are called through this javascript library <i>/_mpt_/mpt-ws.js</i>.	</div>
+			<div>The following javascripts funcions are allowed:
+			<ul>
+			<li><i><b>mptWS.global.openWebSocket():</b></i> Opens the websocket connection to server</li>
+			<li><i><b>mptWS.global.closeWebSocket():</b></i> Closes the websocket connection</li>
+			<li><i><b>mptWS.global.toggle = function (flag) {}:<i><b> When flag is true the websocket connection has been successfully open, otherwise the connection is closed</li>
+			<li><i><b>mptWS.global.send = function (message) {}:<i><b> Sends <i>message</i> to server</li>
+			<li><i><b>mptWS.global.async = function (response) {}:<i><b> Recieves a <i>response</i> from server</li>
+			<li><i><b>mptWS.global.url:<i><b> Variable which holds the current server url</li>
+			</ul>
+			</div>
+		</article >
+	</section>
+	
+	<section id="Sample">
+		<article class="frame">
+			<h2>mptWS.global.send()</h2>
+			<div class="label">Your Name:</div>
+			<div class="value">
+				<input id="testName" type="text"/>
+			</div>
+			<button id="btnTest">Send</button>
+		</article>
+		<article class="frame">
+			<div class="label">Result:</div>	
+			<div id="result" class="value">Your name here</div>
+		</article>
+		<article class="frame">
+			<h2>mptWS.global.async()</h2>
+			<div class="label">Updated every</div>
+			<div class="value">
+					<input id="testTimer" type="text" name="testTimer"> seconds</input>
+			</div>
+			<button id="btnTimer">Update Timer</button>
+			
+		</article>
+		<article class="frame">
+			<div class="label">Timer Updated:</div>	
+			<div id="time" class="value"/>
+		</article>
+		<article class="frame"> 
+			<div class="label">Current update time: </div>
+			<div id="updateTime" class="value">5</div> 
+		</article>
+	</section>
+	
+	<section id="objects">
+		<article class="frame">
+		  <form action="#home" method="POST" id="login" name="org.mpt.jf.ws.object.Login">
+              <fieldset>
+           
+                <label for="text">NullData:</label>
+                <input type="text" name="dataNull" id="idNull" value=""  />
+
+                <label for="number">IntData:</label>
+                <input type="number" name="dataInt" id="idInt" value="" />
+                
+				<label for="text">StringData:</label>
+                <input type="text" name="StringInt" id="idString" value="" />
+                
+                <input id="Submit1" type="submit" value="validate" data-role="button" data-inline="true" data-theme="c" />
+              </fieldset>
+          </form>
+		</article>
+	</section>
+
+	<footer>
+		<div id="footer_text">&copy; 2012 by <a href="#">J2Fringe</a> - Websocket & OSGI Applications. All rights reserved.</div>
+	</footer>
+</div>
+</body>
+
+</html>

@@ -29,6 +29,10 @@ public class ClassPathHandler extends AbstractResourceHandler {
 	private static final String DEFAULT_WS_JS_PATH = "/_mpt_/mpt-ws.js";
 	private static final String DEFAULT_WS_JS_PACK = "/org/mpt/j2f/ws/server/res/js/mpt-ws.js";
 	
+	private static final String DEFAULT_JFWS_JS_PATH = "/_mpt_/jf-ws.js";
+	private static final String DEFAULT_JFWS_JS_PACK = "/org/mpt/j2f/ws/server/res/js/jf-ws.js";
+	
+	
 	
 	private IWebSocketApp wsApp_ = null;
 
@@ -73,11 +77,18 @@ public class ClassPathHandler extends AbstractResourceHandler {
         	if(wsApp_.getHttpURL() == null || wsApp_.getHttpURL().length() == 0) {
         		baseURL = "/";
         	}
-        	if(!path.equals(baseURL+DEFAULT_WS_JS_PATH)) {
-        		pack = resolveURL(path);
-        	} else {
+        	if(path.equals(baseURL+DEFAULT_WS_JS_PATH)) {
         		pack = DEFAULT_WS_JS_PACK;
+        	} else if(path.equals(baseURL+DEFAULT_JFWS_JS_PATH)) {
+        		pack = DEFAULT_JFWS_JS_PACK;
+        	} else {
+        		pack = resolveURL(path);
         	}
+//        	if(!path.equals(baseURL+DEFAULT_WS_JS_PATH)) {
+//        		pack = resolveURL(path);
+//        	} else {
+//        		pack = DEFAULT_WS_JS_PACK;
+//        	}
             
             return (pack != null);
         }
@@ -89,6 +100,10 @@ public class ClassPathHandler extends AbstractResourceHandler {
         		if(pack.equals(DEFAULT_WS_JS_PACK)) {
         			String temp = readDefaultWSJS();
         			temp = temp.replace("<$mptWS.global.url$>", "mptWS.global.url='ws://"+getLocalhost()+":"+WebSocketService.getPort()+wsApp_.getWebSocketURL()+"';");
+        			is = new ByteArrayInputStream(temp.getBytes());
+        		} else if(pack.equals(DEFAULT_JFWS_JS_PACK)) {
+        			String temp = readDefaultWSJS();
+        			temp = temp.replace("<$wsurl$>", "this.ws_url='ws://"+getLocalhost()+":"+WebSocketService.getPort()+wsApp_.getWebSocketURL()+"';");
         			is = new ByteArrayInputStream(temp.getBytes());
         		} else {
         			is = wsApp_.getClass().getResourceAsStream(pack);
